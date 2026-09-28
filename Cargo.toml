@@ -215,6 +215,10 @@ android-wakelock = { git = "https://github.com/rustdesk-org/android-wakelock" }
 members = ["libs/scrap", "libs/hbb_common", "libs/base", "libs/enigo", "libs/clipboard", "libs/virtual_display", "libs/virtual_display/dylib", "libs/portable", "libs/remote_printer"]
 exclude = ["vdi/host"]
 
+# Based on rdev a361d86; macOS must read Unicode carried by MKey's synthetic events.
+[patch."https://github.com/rustdesk-org/rdev"]
+rdev = { path = "libs/rdev" }
+
 # Patch libxdo-sys to use a stub implementation that doesn't require libxdo
 # This allows building and running on systems without libxdo installed (e.g., Wayland-only)
 [patch.crates-io]

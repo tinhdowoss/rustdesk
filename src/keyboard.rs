@@ -673,10 +673,14 @@ fn start_grab_loop() {
             return res;
         };
         #[cfg(all(feature = "flutter", any(target_os = "macos", target_os = "windows")))]
-        let mut display_hotkey_state = display_hotkey::State::default();
+        let display_hotkey_state = std::cell::RefCell::new(display_hotkey::State::default());
         #[cfg(all(feature = "flutter", any(target_os = "macos", target_os = "windows")))]
         let func = move |event: Event| {
-            display_hotkey::handle(&mut display_hotkey_state, event, &try_handle_keyboard)
+            display_hotkey::handle(
+                &mut display_hotkey_state.borrow_mut(),
+                event,
+                &try_handle_keyboard,
+            )
         };
         #[cfg(not(all(feature = "flutter", any(target_os = "macos", target_os = "windows"))))]
         let func = move |event: Event| match event.event_type {

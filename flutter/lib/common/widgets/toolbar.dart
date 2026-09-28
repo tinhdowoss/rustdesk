@@ -7,6 +7,7 @@ import 'package:flutter_hbb/common.dart';
 import 'package:flutter_hbb/common/shared_state.dart';
 import 'package:flutter_hbb/common/widgets/dialog.dart';
 import 'package:flutter_hbb/common/widgets/login.dart';
+import 'package:flutter_hbb/common/widgets/remote_text_input.dart';
 import 'package:flutter_hbb/consts.dart';
 import 'package:flutter_hbb/desktop/widgets/remote_toolbar.dart';
 import 'package:flutter_hbb/models/model.dart';
@@ -376,6 +377,12 @@ List<TTextMenu> toolbarControls(BuildContext context, String id, FFI ffi) {
   if (isDefaultConn &&
       pi.platform != kPeerPlatformAndroid &&
       perms['keyboard'] != false) {
+    if (isMacOS && pi.platform == kPeerPlatformWindows) {
+      v.add(TTextMenu(
+        child: Text(translate('Type text on remote')),
+        onPressed: () => showRemoteTextInput(ffi),
+      ));
+    }
     v.add(TTextMenu(
         child: Text(translate('Send clipboard keystrokes')),
         onPressed: () async {

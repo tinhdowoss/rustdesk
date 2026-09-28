@@ -73,6 +73,8 @@ pub const kKeyboardUnknown: PhysicalKeyboardLayoutType = 1061109567;
 // https://developer.apple.com/documentation/coregraphics/cgeventtapplacement?language=objc
 pub type CGEventTapPlacement = u32;
 #[allow(non_upper_case_globals)]
+pub const kCGHeadInsertEventTap: u32 = 0;
+#[allow(non_upper_case_globals)]
 pub const kCGTailAppendEventTap: u32 = 1;
 
 // https://developer.apple.com/documentation/coregraphics/cgeventtapoptions?language=objc
